@@ -48,7 +48,7 @@ names = []
 models = []
 results = []
 wait = 10
-probability = 0.20
+probability = 0.90
 
 # funciones
 def confusionMatrix(confusionMatrixResult, labelsIndex=['Actual: YES','Actual: NO'], labelsColumns=['Predicted: YES','Predicted: NO']):

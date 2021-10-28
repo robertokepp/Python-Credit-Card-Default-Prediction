@@ -23,12 +23,12 @@ warnings.filterwarnings("ignore")
 # MARRIAGE: estado marital (1=casado , 2=soltero, 3=otros)
 # AGE: edad
 # (-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)
-# PAY_0: estado de reeembolso en septiembre
-# PAY_1: estado de reeembolso en agosto
-# PAY_2: estado de reeembolso en julio
-# PAY_3: estado de reeembolso enn junio
-# PAY_4: estado de reeembolso en mayo
-# PAY_5: estado de reeembolso en abril
+# PAY_0: estado de reembolso en septiembre
+# PAY_1: estado de reembolso en agosto
+# PAY_2: estado de reembolso en julio
+# PAY_3: estado de reembolso en junio
+# PAY_4: estado de reembolso en mayo
+# PAY_5: estado de reembolso en abril
 # BILL_AMT1: monto del estado de cuenta en septiembre
 # BILL_AMT2: monto del estado de cuenta en agosto
 # BILL_AMT3: monto del estado de cuenta en julio
@@ -47,7 +47,7 @@ warnings.filterwarnings("ignore")
 names = []
 models = []
 results = []
-wait = 0
+wait = 10
 probability = 0.20
 
 # funciones

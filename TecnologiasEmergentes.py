@@ -43,46 +43,13 @@ warnings.filterwarnings("ignore")
 # PAY_AMT6: monto del pago anterior abril
 # default.payment.next.month: pago por defecto (1=si , 0=no)
 
-# Ingreso de datos
-limit_bal = input("limit_bal: ")
-sex = input("sex (1=masculino , 2=femenino): ")
-education = input("education (1=postgrado , 2=universidad , 3=escuela secundaria , 4=otros , 5=desconocido , 6=desconocido)): ")
-marriage = input("marriage (1=casado , 2=soltero, 3=otros): ")
-age = input("age: ")
-
-print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
-
-pay_1 = input("pay_1 (estado de reembolso en septiembre): ")
-pay_2 = input("pay_2 (estado de reembolso en agosto): ")
-pay_3 = input("pay_3 (estado de reembolso en julio): ")
-pay_4 = input("pay_4 (estado de reembolso en junio): ")
-pay_5 = input("pay_5 (estado de reembolso en mayo): ")
-pay_6 = input("pay_6 (estado de reembolso en abril): ")
-
-print("\n(0-∞ = ammount)")
-
-bill_amt1 = input("bill_amt1 (monto del estado de cuenta en septiembre): ")
-bill_amt2 = input("bill_amt2 (monto del estado de cuenta en agosto): ")
-bill_amt3 = input("bill_amt3 (monto del estado de cuenta en julio): ")
-bill_amt4 = input("bill_amt4 (monto del estado de cuenta en junio): ")
-bill_amt5 = input("bill_amt5 (monto del estado de cuenta en mayo): ")
-bill_amt6 = input("bill_amt6 (monto del estado de cuenta en abril): ")
-
-print("\n(0-∞ = ammount)")
-
-pay_amt1 = input("pay_amt1 (monto del pago anterior septiembre): ")
-pay_amt2 = input("pay_amt2 (monto del pago anterior agosto): ")
-pay_amt3 = input("pay_amt3 (monto del pago anterior julio): ")
-pay_amt4 = input("pay_amt4 (monto del pago anterior junio): ")
-pay_amt5 = input("pay_amt5 (monto del pago anterior mayo): ")
-pay_amt6 = input("pay_amt6 (monto del pago anterior abril): ")
-
 # Variables
 names = []
 models = []
 results = []
 wait = 0
 probability = 0.90
+canPrint = 0
 
 # Funciones
 def confusionMatrix(confusionMatrixResult, labelsIndex=['Actual: YES','Actual: NO'], labelsColumns=['Predicted: YES','Predicted: NO']):
@@ -120,7 +87,8 @@ models.append(('Logistic Regression', LogisticRegression()))
 models.append(('Decision Tree Classifier', DecisionTreeClassifier()))
 models.append(('Naive Bayes Classifier', GaussianNB()))
 
-print('\nModels')
+if(canPrint == 1):
+    print('Models')
 # Loop de los modelos
 for name, model in models:
 
@@ -134,9 +102,10 @@ for name, model in models:
     scoreResult = cross_val_score(model, inputTraining, outputTraining, cv=kfold, scoring='roc_auc')
 
    # Se Imprime el resultado
-    print('\nName: ' + name)
-    print('Mean: ' + str(scoreResult.mean()))
-    print('Standard deviation: ' + str(scoreResult.std()))
+    if(canPrint == 1):
+        print('\nName: ' + name)
+        print('Mean: ' + str(scoreResult.mean()))
+        print('Standard deviation: ' + str(scoreResult.std()))
 
 # Espera de n segundos
 time.sleep(wait)
@@ -180,42 +149,82 @@ naiveBayesClassifierResult = confusion_matrix(y_pred=outputTestingPredictionNaiv
 # falsos negativos = si quedaron en default, y no es verdad
 # verdaderos negativos = no quedaron en default y no es verdad
 # Se imprimen los resultados de la matriz de confusion
-print("\n\n\nConfusion Matrix")
-print('{verdaderos positivos} {falsos positivos}\n{falsos negativos} {verdaderos negativos}')
+if(canPrint == 1):
+    print("\n\n\nConfusion Matrix")
+    print('{verdaderos positivos} {falsos positivos}\n{falsos negativos} {verdaderos negativos}')
 
-print("\nLogistic Regression")
-print(LogisticRegressionResult)
+    print("\nLogistic Regression")
+    print(LogisticRegressionResult)
 
-print("\nClassification Trees")
-print(calssificationTreesResult)
+    print("\nClassification Trees")
+    print(calssificationTreesResult)
 
-print("\nNaive Bayes Classifier")
-print(naiveBayesClassifierResult)
+    print("\nNaive Bayes Classifier")
+    print(naiveBayesClassifierResult)
 
-# Espera de n segundos
-time.sleep(wait)
+    # Espera de n segundos
+    time.sleep(wait)
 
-# Se imprimen los resultados de la matriz de confusion con tablas
-print("\n\n\nConfusion Matrix With Tables")
+    # Se imprimen los resultados de la matriz de confusion con tablas
+    print("\n\n\nConfusion Matrix With Tables")
 
-print("\nLogistic Regression")
-print(confusionMatrix(LogisticRegressionResult))
+    print("\nLogistic Regression")
+    print(confusionMatrix(LogisticRegressionResult))
 
-print("\nClassification Trees")
-print(confusionMatrix(calssificationTreesResult))
+    print("\nClassification Trees")
+    print(confusionMatrix(calssificationTreesResult))
 
-print("\nNaive Bayes Classifier")
-print(confusionMatrix(naiveBayesClassifierResult))
+    print("\nNaive Bayes Classifier")
+    print(confusionMatrix(naiveBayesClassifierResult))
 
-# Espera de n segundos
-time.sleep(wait)
+    # Espera de n segundos
+    time.sleep(wait)
 
-# Se imprimen los resultados del modelo en porcentaje
-print("\n\n\nModel Results")
-print(modelResults*100)
+    # Se imprimen los resultados del modelo en porcentaje
+    print("\n\n\nModel Results")
+    print(modelResults*100)
 
-# Espera de n segundos
-time.sleep(wait)
+    # Espera de n segundos
+    time.sleep(wait)
+
+# Ingreso de datos
+if(canPrint == 1):
+    print("\n\nIngreso de datos")
+else:
+    print("Ingreso de datos")
+
+limit_bal = input("\nlimit_bal: ")
+sex = input("sex (1=masculino , 2=femenino): ")
+education = input("education (1=postgrado , 2=universidad , 3=escuela secundaria , 4=otros , 5=desconocido , 6=desconocido)): ")
+marriage = input("marriage (1=casado , 2=soltero, 3=otros): ")
+age = input("age: ")
+
+print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+
+pay_1 = input("pay_1 (estado de reembolso en septiembre): ")
+pay_2 = input("pay_2 (estado de reembolso en agosto): ")
+pay_3 = input("pay_3 (estado de reembolso en julio): ")
+pay_4 = input("pay_4 (estado de reembolso en junio): ")
+pay_5 = input("pay_5 (estado de reembolso en mayo): ")
+pay_6 = input("pay_6 (estado de reembolso en abril): ")
+
+print("\n(0-∞ = ammount)")
+
+bill_amt1 = input("bill_amt1 (monto del estado de cuenta en septiembre): ")
+bill_amt2 = input("bill_amt2 (monto del estado de cuenta en agosto): ")
+bill_amt3 = input("bill_amt3 (monto del estado de cuenta en julio): ")
+bill_amt4 = input("bill_amt4 (monto del estado de cuenta en junio): ")
+bill_amt5 = input("bill_amt5 (monto del estado de cuenta en mayo): ")
+bill_amt6 = input("bill_amt6 (monto del estado de cuenta en abril): ")
+
+print("\n(0-∞ = ammount)")
+
+pay_amt1 = input("pay_amt1 (monto del pago anterior septiembre): ")
+pay_amt2 = input("pay_amt2 (monto del pago anterior agosto): ")
+pay_amt3 = input("pay_amt3 (monto del pago anterior julio): ")
+pay_amt4 = input("pay_amt4 (monto del pago anterior junio): ")
+pay_amt5 = input("pay_amt5 (monto del pago anterior mayo): ")
+pay_amt6 = input("pay_amt6 (monto del pago anterior abril): ")
 
 # Data de la nueva prediccion
 newPredictionDataDefault = OrderedDict([('limit_bal', 10000),('sex', 1),('education', 1),('marriage', 1),('age', 30),('pay_1', 9),('pay_2', 9),('pay_3', 9),('pay_4', 9),('pay_5', 9), ('pay_6', 0),('bill_amt1', 10),('bill_amt2', 20 ),('bill_amt3', 30 ),('bill_amt4', 40 ),('bill_amt5', 50 ),('bill_amt6', 60 ), ('pay_amt1', 100 ),('pay_amt2', 200 ),('pay_amt3', 300 ),('pay_amt4', 400 ),('pay_amt5', 500 ), ('pay_amt6', 600 )])

@@ -64,9 +64,9 @@ def individualPrediction(newPrediction):
     predict = logisticRegression.predict_proba(data)[0][1]
     percentage = str(round(predict*100,2))
     if predict >= probability:
-        return 'This person will default with a prediction of: ' + percentage + "%"
+        return "This person will default (prediction of default " + percentage + "%)"
     else:
-        return 'This person will pay with a prediction of: ' + percentage + "%"
+        return "This person will pay (prediction of default " + percentage + "%)"
 
 # Leer el archivo csv
 fileData = pd.read_csv('test.csv', index_col="ID")
@@ -193,38 +193,223 @@ if(canPrint == 1):
 else:
     print("Ingreso de datos")
 
-limit_bal = input("\nlimit_bal: ")
-sex = input("sex (1=masculino , 2=femenino): ")
-education = input("education (1=postgrado , 2=universidad , 3=escuela secundaria , 4=otros , 5=desconocido , 6=desconocido)): ")
-marriage = input("marriage (1=casado , 2=soltero, 3=otros): ")
-age = input("age: ")
+limit_bal = int(input("\nlimit_bal: "))
 
-print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+while True:
+    try:
+        sex = int(input("sex (1=masculino , 2=femenino): "))
+        if sex < 1 or sex > 2:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
 
-pay_1 = input("pay_1 (estado de reembolso en septiembre): ")
-pay_2 = input("pay_2 (estado de reembolso en agosto): ")
-pay_3 = input("pay_3 (estado de reembolso en julio): ")
-pay_4 = input("pay_4 (estado de reembolso en junio): ")
-pay_5 = input("pay_5 (estado de reembolso en mayo): ")
-pay_6 = input("pay_6 (estado de reembolso en abril): ")
+while True:
+    try:
+        education = int(input("education (1=postgrado , 2=universidad , 3=escuela secundaria , 4=otros , 5=desconocido , 6=desconocido)): "))
+        if education < 1 or education > 6:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
 
-print("\n(0-∞ = ammount)")
+while True:
+    try:
+        marriage = int(input("marriage (1=casado , 2=soltero, 3=otros): "))
+        if marriage < 1 or marriage > 3:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
 
-bill_amt1 = input("bill_amt1 (monto del estado de cuenta en septiembre): ")
-bill_amt2 = input("bill_amt2 (monto del estado de cuenta en agosto): ")
-bill_amt3 = input("bill_amt3 (monto del estado de cuenta en julio): ")
-bill_amt4 = input("bill_amt4 (monto del estado de cuenta en junio): ")
-bill_amt5 = input("bill_amt5 (monto del estado de cuenta en mayo): ")
-bill_amt6 = input("bill_amt6 (monto del estado de cuenta en abril): ")
+while True:
+    try:
+        age = int(input("age (18-∞): "))
+        if age < 18:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
 
-print("\n(0-∞ = ammount)")
+while True:
+    try:
+        print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+        pay_1 = int(input("pay_1 (estado de reembolso en septiembre): "))
+        if pay_1 < -1 or pay_1 > 9:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
 
-pay_amt1 = input("pay_amt1 (monto del pago anterior septiembre): ")
-pay_amt2 = input("pay_amt2 (monto del pago anterior agosto): ")
-pay_amt3 = input("pay_amt3 (monto del pago anterior julio): ")
-pay_amt4 = input("pay_amt4 (monto del pago anterior junio): ")
-pay_amt5 = input("pay_amt5 (monto del pago anterior mayo): ")
-pay_amt6 = input("pay_amt6 (monto del pago anterior abril): ")
+while True:
+    try:
+        print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+        pay_2 = int(input("pay_2 (estado de reembolso en agosto): "))
+        if pay_2 < -1 or pay_2 > 9:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+        pay_3 = int(input("pay_3 (estado de reembolso en julio): "))
+        if pay_3 < -1 or pay_3 > 9:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+        pay_4 = int(input("pay_4 (estado de reembolso en junio): "))
+        if pay_4 <- 1 or pay_4 > 9:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+        pay_5 = int(input("pay_5 (estado de reembolso en mayo): "))
+        if pay_5 <- 1 or pay_5 > 9:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
+        pay_6 = int(input("pay_6 (estado de reembolso en abril): "))
+        if pay_6 <- 1 or pay_6 > 9:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        bill_amt1 = int(input("bill_amt1 (monto del estado de cuenta en septiembre): "))
+        if bill_amt1 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        bill_amt2 = int(input("bill_amt2 (monto del estado de cuenta en agosto): "))
+        if bill_amt2 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        bill_amt3 = int(input("bill_amt3 (monto del estado de cuenta en julio): "))
+        if bill_amt3 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        bill_amt4 = int(input("bill_amt4 (monto del estado de cuenta en junio): "))
+        if bill_amt4 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        bill_amt5 = int(input("bill_amt5 (monto del estado de cuenta en mayo): "))
+        if bill_amt5 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        bill_amt6 = int(input("bill_amt6 (monto del estado de cuenta en abril): "))
+        if bill_amt6 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        pay_amt1 = int(input("pay_amt1 (monto del pago anterior septiembre): "))
+        if pay_amt1 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        pay_amt2 = int(input("pay_amt2 (monto del pago anterior agosto): "))
+        if pay_amt2 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        pay_amt3 = int(input("pay_amt3 (monto del pago anterior julio): "))
+        if pay_amt3 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        pay_amt4 = int(input("pay_amt4 (monto del pago anterior junio): "))
+        if pay_amt4 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        pay_amt5 = int(input("pay_amt5 (monto del pago anterior mayo): "))
+        if pay_amt5 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
+
+while True:
+    try:
+        print("\n(0-∞ = ammount)")
+        pay_amt6 = int(input("pay_amt6 (monto del pago anterior abril): "))
+        if pay_amt6 < 0:
+            raise ValueError
+        break
+    except ValueError:
+        print("Invalid value.")
 
 # Data de la nueva prediccion
 newPredictionDataDefault = OrderedDict([('limit_bal', 10000),('sex', 1),('education', 1),('marriage', 1),('age', 30),('pay_1', 9),('pay_2', 9),('pay_3', 9),('pay_4', 9),('pay_5', 9), ('pay_6', 0),('bill_amt1', 10),('bill_amt2', 20 ),('bill_amt3', 30 ),('bill_amt4', 40 ),('bill_amt5', 50 ),('bill_amt6', 60 ), ('pay_amt1', 100 ),('pay_amt2', 200 ),('pay_amt3', 300 ),('pay_amt4', 400 ),('pay_amt5', 500 ), ('pay_amt6', 600 )])

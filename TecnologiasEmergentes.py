@@ -105,9 +105,9 @@ def individualPrediction(newPrediction):
 fileData = pd.read_csv('test.csv', index_col="ID")
 
 # Construccion de los modelos
-input = fileData.drop('default', axis=1)
+inputFileData = fileData.drop('default', axis=1)
 robustScaler = RobustScaler()
-inputRobustScaler = robustScaler.fit_transform(input)
+inputRobustScaler = robustScaler.fit_transform(inputFileData)
 output = fileData['default']
 
 # random_state = controla el shuffling aplicada a la data antes de separarla

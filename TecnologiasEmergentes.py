@@ -20,10 +20,15 @@ warnings.filterwarnings("ignore")
 # ID: id de cada cliente
 # LIMIT_BAL: monto del credito
 # SEX: genero (1=hombre , 2=mujer)
-# EDUCATION: educacion (1=postgrado , 2=universidad , 3=escuela secundaria , 4=otros , 5=desconocido , 6=desconocido)
+# EDUCATION: educacion (1=postgrado , 2=universidad , 3=escuela secundaria ,
+# 4=otros , 5=desconocido , 6=desconocido)
 # MARRIAGE: estado marital (1=casado , 2=soltero, 3=otros)
 # AGE: edad
-# (-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)
+# (-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago
+# por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4
+# meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses ,
+# 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora
+# en el pago por 9 meses o mayor)
 # PAY_1: estado de reembolso en septiembre
 # PAY_2: estado de reembolso en agosto
 # PAY_3: estado de reembolso en julio
@@ -64,7 +69,7 @@ def individualPrediction(newPrediction):
     data = newPrediction.values.reshape(1, -1)
     data = robustScaler.transform(data)
     predict = logisticRegression.predict_proba(data)[0][1]
-    percentage = str(round(predict*100,2))
+    percentage = str(round(predict * 100,2))
     if predict >= probability:
         return "This person will default (prediction of default " + percentage + "%)"
     else:
@@ -95,9 +100,12 @@ if(canPrint == 1):
 for name, model in models:
 
     # KFold = provee indices de entrenamiento para separar la data en sets.
-    # random_state = Afecta el orden de los índices, que controla la aleatoriedad de cada fold
-    # n_splits = Numero de folds con la que se evalua los modelos con diferentes combinaciones de hiperparametros
-    # scoring = Medida del score de la precision del modelo con los datos de entrenamiento
+    # random_state = Afecta el orden de los índices, que controla la
+    # aleatoriedad de cada fold
+    # n_splits = Numero de folds con la que se evalua los modelos con
+    # diferentes combinaciones de hiperparametros
+    # scoring = Medida del score de la precision del modelo con los datos de
+    # entrenamiento
     kfold = KFold(n_splits=10, random_state=7, shuffle=True)
 
     # Evaluar la puntuacion mediante validacion cruzada
@@ -184,7 +192,7 @@ if(canPrint == 1):
 
     # Se imprimen los resultados del modelo en porcentaje
     print("\n\n\nModel Results")
-    print(modelResults*100)
+    print(modelResults * 100)
 
     # Espera de n segundos
     time.sleep(wait)
@@ -272,7 +280,7 @@ if(canInput == 1):
         try:
             print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
             pay_4 = int(input("pay_4 (estado de reembolso en junio): "))
-            if pay_4 <- 1 or pay_4 > 9:
+            if pay_4 < - 1 or pay_4 > 9:
                 raise ValueError
             break
         except ValueError:
@@ -282,7 +290,7 @@ if(canInput == 1):
         try:
             print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
             pay_5 = int(input("pay_5 (estado de reembolso en mayo): "))
-            if pay_5 <- 1 or pay_5 > 9:
+            if pay_5 < - 1 or pay_5 > 9:
                 raise ValueError
             break
         except ValueError:
@@ -292,7 +300,7 @@ if(canInput == 1):
         try:
             print("\n(-1=pago debidamente , 1=demora en el pago por 1 meses , 2=demora en el pago por 2 meses , 3=demora en el pago por 3 meses , 4=demora en el pago por 4 meses , 5=demora en el pago por 5 meses , 6=demora en el pago por 6 meses , 7=demora en el pago por 7 meses , 8=demora en el pago por 8 meses , 9=demora en el pago por 9 meses o mayor)")
             pay_6 = int(input("pay_6 (estado de reembolso en abril): "))
-            if pay_6 <- 1 or pay_6 > 9:
+            if pay_6 < - 1 or pay_6 > 9:
                 raise ValueError
             break
         except ValueError:
@@ -419,9 +427,9 @@ if(canInput == 1):
             print("Invalid value.")
 
     # Data de la nueva prediccion
-    newPredictionDataDefault = OrderedDict([('limit_bal', 10000),('sex', 1),('education', 1),('marriage', 1),('age', 30),('pay_1', 9),('pay_2', 9),('pay_3', 9),('pay_4', 9),('pay_5', 9), ('pay_6', 9),('bill_amt1', 10),('bill_amt2', 20 ),('bill_amt3', 30 ),('bill_amt4', 40 ),('bill_amt5', 50 ),('bill_amt6', 60 ), ('pay_amt1', 100 ),('pay_amt2', 200 ),('pay_amt3', 300 ),('pay_amt4', 400 ),('pay_amt5', 500 ), ('pay_amt6', 600 )])
-    newPredictionDataPay = OrderedDict([('limit_bal', 20000),('sex', 2),('education', 2),('marriage', 2),('age', 30),('pay_1', -1),('pay_2', -1),('pay_3', -1),('pay_4', -1),('pay_5', -1), ('pay_6', -1),('bill_amt1', 100),('bill_amt2', 200 ),('bill_amt3', 300 ),('bill_amt4', 400 ),('bill_amt5', 500 ),('bill_amt6', 600 ), ('pay_amt1', 1000 ),('pay_amt2', 2000 ),('pay_amt3', 3000 ),('pay_amt4', 4000 ),('pay_amt5', 5000 ), ('pay_amt6', 6000 )])
-    newPredictionDataEntry= OrderedDict([('limit_bal', limit_bal),('sex', sex),('education', education),('marriage', marriage),('age', age),('pay_1', pay_1),('pay_2', pay_2),('pay_3', pay_3),('pay_4', pay_4),('pay_5', pay_5), ('pay_6', pay_6),('bill_amt1', bill_amt1),('bill_amt2', bill_amt2 ),('bill_amt3', bill_amt3 ),('bill_amt4', bill_amt4 ),('bill_amt5', bill_amt5 ),('bill_amt6', bill_amt6 ), ('pay_amt1', pay_amt1 ),('pay_amt2', pay_amt2 ),('pay_amt3', pay_amt3 ),('pay_amt4', pay_amt4 ),('pay_amt5', pay_amt5 ), ('pay_amt6', pay_amt6 )])
+    newPredictionDataDefault = OrderedDict([('limit_bal', 10000),('sex', 1),('education', 1),('marriage', 1),('age', 30),('pay_1', 9),('pay_2', 9),('pay_3', 9),('pay_4', 9),('pay_5', 9), ('pay_6', 9),('bill_amt1', 10),('bill_amt2', 20),('bill_amt3', 30),('bill_amt4', 40),('bill_amt5', 50),('bill_amt6', 60), ('pay_amt1', 100),('pay_amt2', 200),('pay_amt3', 300),('pay_amt4', 400),('pay_amt5', 500), ('pay_amt6', 600)])
+    newPredictionDataPay = OrderedDict([('limit_bal', 20000),('sex', 2),('education', 2),('marriage', 2),('age', 30),('pay_1', -1),('pay_2', -1),('pay_3', -1),('pay_4', -1),('pay_5', -1), ('pay_6', -1),('bill_amt1', 100),('bill_amt2', 200),('bill_amt3', 300),('bill_amt4', 400),('bill_amt5', 500),('bill_amt6', 600), ('pay_amt1', 1000),('pay_amt2', 2000),('pay_amt3', 3000),('pay_amt4', 4000),('pay_amt5', 5000), ('pay_amt6', 6000)])
+    newPredictionDataEntry = OrderedDict([('limit_bal', limit_bal),('sex', sex),('education', education),('marriage', marriage),('age', age),('pay_1', pay_1),('pay_2', pay_2),('pay_3', pay_3),('pay_4', pay_4),('pay_5', pay_5), ('pay_6', pay_6),('bill_amt1', bill_amt1),('bill_amt2', bill_amt2),('bill_amt3', bill_amt3),('bill_amt4', bill_amt4),('bill_amt5', bill_amt5),('bill_amt6', bill_amt6), ('pay_amt1', pay_amt1),('pay_amt2', pay_amt2),('pay_amt3', pay_amt3),('pay_amt4', pay_amt4),('pay_amt5', pay_amt5), ('pay_amt6', pay_amt6)])
 
     # Nueva prediccion
     newPredictionDefault = pd.Series(newPredictionDataDefault)
@@ -454,6 +462,12 @@ if(canInput == 1):
         # Espera de n segundos
         time.sleep(wait)
 
+# Abrir archivo de salida
+fileOutput = open('output.csv', 'w')
+
+# Se crea el escritor del archivo
+writer = csv.writer(fileOutput)
+
 # Data de la prediccion por archivo
 print("\n\n\nNew Prediction By File\n")
 with open('input.csv') as csv_file:
@@ -462,6 +476,8 @@ with open('input.csv') as csv_file:
     for row in csv_reader:
         if line_count == 0:
             line_count += 1
+            rowHeader = ["limit_bal","sex","education","marriage","age","pay_1","pay_2","pay_3","pay_4","pay_5","pay_6","bill_amt1","bill_amt2","bill_amt3","bill_amt4","bill_amt5","bill_amt6","pay_amt1","pay_amt2","pay_amt3","pay_amt4","pay_amt5","pay_amt6","default"]
+            writer.writerow(rowHeader)
         else:
             line_count += 1
             limit_bal = row[0]
@@ -487,11 +503,16 @@ with open('input.csv') as csv_file:
             pay_amt4 = row[20]
             pay_amt5 = row[21]
             pay_amt6 = row[22]
-            newPredictionByFileEntry= OrderedDict([('limit_bal', limit_bal),('sex', sex),('education', education),('marriage', marriage),('age', age),('pay_1', pay_1),('pay_2', pay_2),('pay_3', pay_3),('pay_4', pay_4),('pay_5', pay_5), ('pay_6', pay_6),('bill_amt1', bill_amt1),('bill_amt2', bill_amt2 ),('bill_amt3', bill_amt3 ),('bill_amt4', bill_amt4 ),('bill_amt5', bill_amt5 ),('bill_amt6', bill_amt6 ), ('pay_amt1', pay_amt1 ),('pay_amt2', pay_amt2 ),('pay_amt3', pay_amt3 ),('pay_amt4', pay_amt4 ),('pay_amt5', pay_amt5 ), ('pay_amt6', pay_amt6 )])
+            newPredictionByFileEntry = OrderedDict([('limit_bal', limit_bal),('sex', sex),('education', education),('marriage', marriage),('age', age),('pay_1', pay_1),('pay_2', pay_2),('pay_3', pay_3),('pay_4', pay_4),('pay_5', pay_5), ('pay_6', pay_6),('bill_amt1', bill_amt1),('bill_amt2', bill_amt2),('bill_amt3', bill_amt3),('bill_amt4', bill_amt4),('bill_amt5', bill_amt5),('bill_amt6', bill_amt6), ('pay_amt1', pay_amt1),('pay_amt2', pay_amt2),('pay_amt3', pay_amt3),('pay_amt4', pay_amt4),('pay_amt5', pay_amt5), ('pay_amt6', pay_amt6)])
             newPredictionByFile = pd.Series(newPredictionByFileEntry)
             print(newPredictionByFileEntry)
             print(individualPrediction(newPredictionByFile))
             print("\n")
+            rowData = [limit_bal , sex , education , marriage , age , pay_1 , pay_2 , pay_3 , pay_4 , pay_5 , pay_6 , bill_amt1 , bill_amt2 , bill_amt3 , bill_amt4 , bill_amt5 , bill_amt6 , pay_amt1 , pay_amt2 , pay_amt3 , pay_amt4 , pay_amt5 , pay_amt6 , individualPrediction(newPredictionByFile)]
+            writer.writerow(rowData)
+
+# cerrar archivo de salida
+fileOutput.close()
 
 # Espera de 60 segundos
 time.sleep(60)

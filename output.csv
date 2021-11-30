@@ -1,0 +1,3 @@
+limit_bal,sex,education,marriage,age,pay_1,pay_2,pay_3,pay_4,pay_5,pay_6,bill_amt1,bill_amt2,bill_amt3,bill_amt4,bill_amt5,bill_amt6,pay_amt1,pay_amt2,pay_amt3,pay_amt4,pay_amt5,pay_amt6,default
+10000,1,1,1,30,9,9,9,9,9,9,10,20,30,40,50,60,100,200,300,400,500,600,This person will default (prediction of default 99.79%)
+20000,2,2,2,30,-1,-1,-1,-1,-1,-1,100,200,300,400,500,600,1000,2000,3000,4000,5000,6000,This person will pay (prediction of default 11.22%)

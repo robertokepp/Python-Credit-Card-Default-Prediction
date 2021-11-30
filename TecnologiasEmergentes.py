@@ -196,7 +196,11 @@ if(canInput == 1):
     else:
         print("Ingreso de datos")
 
-    limit_bal = int(input("\nlimit_bal: "))
+    while True:
+        try:
+            limit_bal = int(input("\nlimit_bal: "))
+        except ValueError:
+            print("Invalid value.")
 
     while True:
         try:
